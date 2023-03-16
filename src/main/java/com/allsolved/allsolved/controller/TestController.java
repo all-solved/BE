@@ -20,6 +20,5 @@ public class TestController {
 
     //젠킨스 트리거 테스트 + Docker
     //pp
-//sads
 
 }
