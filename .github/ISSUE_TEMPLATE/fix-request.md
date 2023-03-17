@@ -1,7 +1,7 @@
 ---
 name: Fix Request
 about: 기능 수정 템플
-title: ''
+title: "[Feat/#Issue 번호] 제목"
 labels: ''
 assignees: ''
 
