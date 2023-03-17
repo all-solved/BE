@@ -1,7 +1,7 @@
 ---
 name: Feature Request
 about: 기능 개발 템플릿
-title: "[Feat/#Issue 번호] 제목"
+title: "[Feat] 제목"
 labels: Feat
 assignees: ''
 
