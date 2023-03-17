@@ -1,7 +1,7 @@
 ---
 name: Refactor Request
 about: 리펙토링 템플
-title: ''
+title: "[Refactor/#Issue 번호] 제목"
 labels: ''
 assignees: ''
 
