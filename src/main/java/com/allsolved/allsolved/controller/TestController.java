@@ -6,6 +6,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class TestController {
+    @RequestMapping("/")
+    public String mainMathod() {
+        return "도커-젠킨스 성공";
+    }
+
 
 
     @RequestMapping("/test")
@@ -13,9 +18,9 @@ public class TestController {
         return "docker-jenkins-test12412";
     }
 
-    @RequestMapping("/")
-    public String mainMathod() {
-        return "도커-젠킨스 성공";
+    @RequestMapping("/dd")
+    public String test22() {
+        return "dd";
     }
 
     //젠킨스 트리거 테스트 + Docker
