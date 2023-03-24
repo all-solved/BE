@@ -1,6 +1,7 @@
 HELP.md
 .gradle
-!build/libs/**
+build/
+build/libs/**
 build/bootJarMainClassName
 build/classes
 build/generated
