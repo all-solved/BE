@@ -26,6 +26,7 @@ public class AlsoUserServiceImpl implements AlsoUserService, UserDetailsService 
     private final FileHandler fileHandler;
     public static final String TYPE = "PROFILE";
 
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return alsoUserRepository.findByAlsoEmail(username)
