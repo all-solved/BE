@@ -49,7 +49,7 @@ public class SecurityConfig {
                 .antMatchers("/codev/my-page/**","/codev/project/**","/codev/study/**","/codev/user/update/password", "/codev/chat/**", "/codev/notification/**", "/codev/QnaBoard/**", "/codev/infoBoard/**").authenticated()
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .antMatchers("/user/**").hasRole("USER")
-                .antMatchers("/").permitAll()
+                .antMatchers("/**").permitAll()
                 .and()
                 .exceptionHandling()
                 .authenticationEntryPoint(autheniticationEntryPointHandler)

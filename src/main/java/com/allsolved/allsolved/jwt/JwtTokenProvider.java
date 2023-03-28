@@ -2,8 +2,8 @@ package com.allsolved.allsolved.jwt;
 
 import com.allsolved.allsolved.errorhandler.AuthenticationCustomException;
 import com.allsolved.allsolved.errorhandler.ErrorCode;
-import com.allsolved.allsolved.jwt.token.RefreshToken;
-import com.allsolved.allsolved.jwt.token.Token;
+import com.allsolved.allsolved.user.entity.RefreshToken;
+import com.allsolved.allsolved.user.entity.Token;
 import io.jsonwebtoken.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -21,8 +21,8 @@ import java.util.Date;
 @RequiredArgsConstructor
 @Component
 public class JwtTokenProvider {
-    private String accessSecretKey = "Darren";
-    private String refreshSecretKey = "DarrenH";
+    private String accessSecretKey = "allsolved";
+    private String refreshSecretKey = "allsolved";
 
     //유효시간 7일
     private long accessTokenValidTime = 7 * 24 * 60 * 60 * 1000L;

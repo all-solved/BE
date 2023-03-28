@@ -1,5 +1,7 @@
 package com.allsolved.allsolved.user.service;
 
+import com.allsolved.allsolved.errorhandler.AllSolvedException;
+import com.allsolved.allsolved.errorhandler.ErrorCode;
 import com.allsolved.allsolved.file.FileHandler;
 import com.allsolved.allsolved.user.dto.AlsoUserDto;
 import com.allsolved.allsolved.user.dto.Role;
@@ -30,12 +32,16 @@ public class AlsoUserServiceImpl implements AlsoUserService, UserDetailsService 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return alsoUserRepository.findByAlsoEmail(username)
-                .orElseThrow(() -> new UsernameNotFoundException("Email : " + username + " not found"));
+                .orElseThrow(() -> new AllSolvedException(ErrorCode.UsernameOrPasswordNotFoundException));
     }
 
     @Transactional
     @Override
     public AlsoUser create(AlsoUserDto alsoUserDto, List<MultipartFile> files) {
+        alsoUserRepository.findByAlsoEmail(alsoUserDto.getAlsoEmail())
+                .ifPresent(a -> {
+                    throw new AllSolvedException(ErrorCode.DUPLICATEEMAIL);
+                });
         //role ENUM 체크 해주기
         AlsoUser alsoUser = alsoUserRepository.save(alsoUserDto.toEntity());
         Photo photo;

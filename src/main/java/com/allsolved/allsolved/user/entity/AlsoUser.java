@@ -28,6 +28,9 @@ public class AlsoUser extends BaseTimeEntity implements UserDetails {
     @Column(name = "also_email", unique = true)
     private String alsoEmail;
 
+    @Column(name = "also_password")
+    private String alsoPassword;
+
     @Column(name = "also_name")
     private String alsoName;
 
@@ -51,38 +54,37 @@ public class AlsoUser extends BaseTimeEntity implements UserDetails {
     }
 
     @Override
-    public String getPassword() {
-        return null;
-    }
-
-    @Override
     public String getUsername() {
         return alsoEmail;
     }
 
     @Override
+    public String getPassword() { return alsoPassword; }
+
+    @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
 
     @Builder
-    public AlsoUser(String alsoEmail, String alsoName, String role) {
+    public AlsoUser(String alsoEmail, String alsoPassword, String alsoName, String role) {
         this.alsoEmail = alsoEmail;
+        this.alsoPassword = alsoPassword;
         this.alsoName = alsoName;
         this.role = role;
     }

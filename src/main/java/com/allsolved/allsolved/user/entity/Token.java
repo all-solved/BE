@@ -1,4 +1,4 @@
-package com.allsolved.allsolved.jwt.token;
+package com.allsolved.allsolved.user.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
