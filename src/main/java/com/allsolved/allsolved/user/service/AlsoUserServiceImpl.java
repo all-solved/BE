@@ -7,6 +7,7 @@ import com.allsolved.allsolved.user.dto.AlsoUserDto;
 import com.allsolved.allsolved.user.dto.Role;
 import com.allsolved.allsolved.user.entity.AlsoUser;
 import com.allsolved.allsolved.user.entity.Photo;
+import com.allsolved.allsolved.user.kakao.KakaoComponent;
 import com.allsolved.allsolved.user.repository.AlsoUserRepository;
 import com.allsolved.allsolved.user.repository.PhotoRepository;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 @RequiredArgsConstructor
 @Service
@@ -26,11 +28,13 @@ public class AlsoUserServiceImpl implements AlsoUserService, UserDetailsService 
     private final AlsoUserRepository alsoUserRepository;
     private final PhotoRepository photoRepository;
     private final FileHandler fileHandler;
+    private final KakaoComponent kakaoComponent;
     public static final String TYPE = "PROFILE";
 
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+
         return alsoUserRepository.findByAlsoEmail(username)
                 .orElseThrow(() -> new AllSolvedException(ErrorCode.UsernameOrPasswordNotFoundException));
     }
@@ -56,6 +60,13 @@ public class AlsoUserServiceImpl implements AlsoUserService, UserDetailsService 
             e.printStackTrace();
         }
         return alsoUser;
+    }
+
+    @Transactional
+    @Override
+    public AlsoUser snsLogin(String code, String userAgent) {
+
+        return null;
     }
 
     @Transactional

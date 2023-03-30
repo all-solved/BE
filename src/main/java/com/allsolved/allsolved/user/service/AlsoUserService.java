@@ -10,6 +10,7 @@ import java.util.List;
 
 public interface AlsoUserService {
     AlsoUser create(AlsoUserDto alsoUserDto, List<MultipartFile> files);
+    AlsoUser snsLogin(String code, String userAgent);
     Long update(@PathVariable Long idx, @RequestBody AlsoUserDto alsoUserDto);
     AlsoUserDto searchById(@PathVariable Long id);
     List<AlsoUserDto> searchAllDesc();
