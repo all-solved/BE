@@ -1,6 +1,7 @@
 package com.allsolved.allsolved.user.entity;
 
 import com.allsolved.allsolved.baseTime.BaseTimeEntity;
+import com.allsolved.allsolved.user.dto.Role;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Builder;
 import lombok.Getter;
@@ -87,6 +88,13 @@ public class AlsoUser extends BaseTimeEntity implements UserDetails {
         this.alsoPassword = alsoPassword;
         this.alsoName = alsoName;
         this.role = role;
+    }
+
+    public AlsoUser(String alsoEmail, String alsoPassword, String alsoName) {
+        this.alsoEmail = alsoEmail;
+        this.alsoPassword = alsoPassword;
+        this.alsoName = alsoName;
+        this.role = Role.ADMIN.getValue();
     }
 
     public void update(String alsoName) {
