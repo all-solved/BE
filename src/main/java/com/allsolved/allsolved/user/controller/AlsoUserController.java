@@ -60,5 +60,8 @@ public class AlsoUserController extends JwtController{
         return alsoUserService.searchAllDesc();
     }
 
+    @GetMapping("/server/restore")
+    public String restoreServer() { return "서버 복구 젠킨스 테스트"; }
+
 
 }
