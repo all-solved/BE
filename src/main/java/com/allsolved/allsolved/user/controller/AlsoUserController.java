@@ -61,7 +61,7 @@ public class AlsoUserController extends JwtController{
     }
 
     @GetMapping("/server/restore")
-    public String restoreServer() { return "서버 복구 젠킨스 테스트"; }
+    public String restoreServer() { return "서버 복구 젠킨스 테스트 2TRY"; }
 
 
 }
