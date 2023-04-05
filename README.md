@@ -1,4 +1,9 @@
 # 미콘 캡스톤 디자인 경진대회
+민원 서비스를 QR로 작성하고, 민원을 관리하는 웹 애플리케이션 ALl-Solved(옳소)
+
+## Software Architecture
+![아키텍처](https://user-images.githubusercontent.com/74559561/229963945-ef923357-aace-4f59-8078-109561631db4.png)
+
 
 ## 커밋 컨벤션
 `feat` : 새로운 기능 추가
