@@ -68,7 +68,10 @@ public class JwtTokenProvider {
 
     //jwt 토큰 인증 정보 조회
     public Authentication getAuthentication(String token) {
-        UserDetails userDetails = userDetailsService.loadUserByUsername(this.getUserPk(token));
+        validationAuthorizationHeader(token);
+        String available_token = extractToken(token);
+        System.out.println("av token = " + available_token);
+        UserDetails userDetails = userDetailsService.loadUserByUsername(this.getUserPk(available_token));
         if(userDetails == null)
             return null;
         else
@@ -82,29 +85,41 @@ public class JwtTokenProvider {
 
     //Header에서 token값을 가지고온다.
     public String getAccessToken(HttpServletRequest request) {
-        try {
-            return request.getHeader("CoDev_Authorization").substring("Bearer ".length());
-        } catch (NullPointerException e) {
-            request.setAttribute("exception", "NullPointerException");
+        return request.getHeader("Authorization");
+    }
+
+    private void validationAuthorizationHeader(String header) {
+        if (header == null || !header.startsWith("Bearer ")) {
+            throw new IllegalArgumentException();
         }
-        return null;
+    }
+
+    private String extractToken(String authorizationHeader) {
+        return authorizationHeader.substring("Bearer ".length());
     }
 
     //토큰의 유효성 검사
     public boolean validateToken(ServletRequest request, String jwtToken) {
         try {
-            Jws<Claims> claims = Jwts.parser().setSigningKey(accessSecretKey).parseClaimsJws(jwtToken);
+            validationAuthorizationHeader(jwtToken);
+            String token = extractToken(jwtToken);
+            Jws<Claims> claims = Jwts.parser().setSigningKey(accessSecretKey).parseClaimsJws(token);
             return !claims.getBody().getExpiration().before(new Date());
         } catch (SignatureException e) {
+            e.printStackTrace();
             request.setAttribute("exception", "ForbiddenException");
         } catch (MalformedJwtException e) {
+            e.printStackTrace();
             request.setAttribute("exception", "MalformedJwtException");
         } catch (ExpiredJwtException e) {
             //토큰 만료시
+            e.printStackTrace();
             request.setAttribute("exception", "ExpiredJwtException");
         } catch (UnsupportedJwtException e) {
+            e.printStackTrace();
             request.setAttribute("exception", "UnsupportedJwtException");
         } catch (IllegalArgumentException e) {
+            e.printStackTrace();
             request.setAttribute("exception", "IllegalArgumentException");
         }
         return false;

@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
 public interface AlsoCounterRepository extends JpaRepository<AlsoCounter, Long> {
-    Optional<AlsoCounterDto> findByCounterId(long counterId);
+    Optional<AlsoCounter> findByCounterId(long counterId);
 }

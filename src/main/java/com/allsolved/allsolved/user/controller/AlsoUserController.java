@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 
-@RequestMapping("/allso/m")
+@RequestMapping("/allso")
 @RestController
 public class AlsoUserController extends JwtController{
     private final PasswordEncoder passwordEncoder;
@@ -49,17 +49,17 @@ public class AlsoUserController extends JwtController{
 
 
     //아래는 연습
-    @PutMapping("/also/update/{idx}")
+    @PutMapping("/m/update/{idx}")
     public Long update(@PathVariable Long idx, @RequestBody AlsoUserDto alsoUserDto) {
         return alsoUserService.update(idx, alsoUserDto);
     }
 
-    @GetMapping("/also/{idx}")
+    @GetMapping("/m/{idx}")
     public AlsoUserDto searchByIdx(@PathVariable Long idx) {
         return alsoUserService.searchById(idx);
     }
 
-    @GetMapping("/also")
+    @GetMapping("/m")
     public List<AlsoUserDto> searchAllDesc() {
         return alsoUserService.searchAllDesc();
     }

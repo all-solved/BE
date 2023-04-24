@@ -8,6 +8,8 @@ import com.allsolved.allsolved.user.controller.JwtController;
 import com.allsolved.allsolved.user.service.JwtService;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+
 @RequestMapping("/allso/m/counter")
 @RestController
 public class AlsoCounterController extends JwtController {
@@ -20,8 +22,8 @@ public class AlsoCounterController extends JwtController {
 
     //소통창구 작성
     @PostMapping("/write")
-    public AllsoResponse write(AlsoCounterDto alsoCounterDto) {
-        return new AllsoResponse.ResponseMap(200, "data", alsoCounterService.create(alsoCounterDto));
+    public AllsoResponse write(HttpServletRequest request, @RequestBody AlsoCounterDto alsoCounterDto) {
+        return new AllsoResponse.ResponseMap(200, "data", alsoCounterService.create(request, alsoCounterDto));
     }
 
     //소통창구 상세조회
