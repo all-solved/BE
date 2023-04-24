@@ -82,7 +82,12 @@ public class JwtTokenProvider {
 
     //Header에서 token값을 가지고온다.
     public String getAccessToken(HttpServletRequest request) {
-        return request.getHeader("CoDev_Authorization").substring("Bearer ".length());
+        try {
+            return request.getHeader("CoDev_Authorization").substring("Bearer ".length());
+        } catch (NullPointerException e) {
+            request.setAttribute("exception", "NullPointerException");
+        }
+        return null;
     }
 
     //토큰의 유효성 검사

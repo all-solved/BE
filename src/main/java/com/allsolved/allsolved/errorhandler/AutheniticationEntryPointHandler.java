@@ -25,10 +25,17 @@ public class AutheniticationEntryPointHandler implements AuthenticationEntryPoin
             setResponse(response, errorCode);
             return;
         }
+
+        if(exception.equals("NullPointerException")) {
+            errorCode = ErrorCode.UNAUTHORIZEDException;
+            setResponse(response, errorCode);
+            return;
+        }
         
         if(exception.equals("PasswordNotFoundException")) {
             errorCode = ErrorCode.PasswordNotFoundException;
             setResponse(response, errorCode);
+            return;
         }
 
         if(exception.equals("ForbiddenException")) {
@@ -48,6 +55,7 @@ public class AutheniticationEntryPointHandler implements AuthenticationEntryPoin
         if(exception.equals("UsernameOrPasswordNotFoundException")) {
             errorCode = ErrorCode.UsernameOrPasswordNotFoundException;
             setResponse(response, errorCode);
+            return;
         }
 
     }
