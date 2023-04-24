@@ -34,7 +34,6 @@ public class AlsoUserServiceImpl implements AlsoUserService, UserDetailsService 
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-
         return alsoUserRepository.findByAlsoEmail(username)
                 .orElseThrow(() -> new AllSolvedException(ErrorCode.UsernameOrPasswordNotFoundException));
     }

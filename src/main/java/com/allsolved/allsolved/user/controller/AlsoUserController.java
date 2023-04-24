@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 
-@RequestMapping("/allso")
+@RequestMapping("/allso/m")
 @RestController
 public class AlsoUserController extends JwtController{
     private final PasswordEncoder passwordEncoder;
@@ -40,11 +40,15 @@ public class AlsoUserController extends JwtController{
 //        return getJwtService().login(request, user, userAgent);
 //    }
 
-    @GetMapping("/sns/login")
+    @GetMapping("/login")
     public AllsoResponse login(HttpServletRequest request, @RequestParam("code") String code, @RequestHeader("User-Agent") String userAgent) {
         return getJwtService().login(request, code, userAgent);
     }
 
+
+
+
+    //아래는 연습
     @PutMapping("/also/update/{idx}")
     public Long update(@PathVariable Long idx, @RequestBody AlsoUserDto alsoUserDto) {
         return alsoUserService.update(idx, alsoUserDto);
