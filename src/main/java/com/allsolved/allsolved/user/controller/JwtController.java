@@ -19,7 +19,7 @@ public abstract class JwtController {
         return jwtTokenProvider;
     }
 
-    public String getCoUserEmail(HttpServletRequest request) throws Exception {
+    public String getUserEmail(HttpServletRequest request) throws Exception {
         return jwtTokenProvider.getUserPk(jwtTokenProvider.getAccessToken(request));
     }
 
