@@ -35,7 +35,7 @@ public class KakaoComponent {
             StringBuilder sb = new StringBuilder();
             sb.append("grant_type=authorization_code");
             sb.append("&client_id=bc712decd5a530ca7387c2ab07618a92");
-            sb.append("&redirect_uri=http://localhost:8081/allso/login");
+            sb.append("&redirect_uri=http://semtle.catholic.ac.kr:8081/allso/login");
             sb.append("&code=" + authorize_code);
             bw.write(sb.toString());
             bw.flush();
