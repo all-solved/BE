@@ -6,7 +6,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -35,9 +34,6 @@ public class AlsoCounter extends BaseTimeEntity {
     @Column(name = "content")
     private String content;
 
-    @Column(name = "importance_count")
-    private int importanceCount;
-
     @Column(name = "QRcode")
     private String QRcode;
 
@@ -48,12 +44,11 @@ public class AlsoCounter extends BaseTimeEntity {
     private LocalDateTime limitedDate;
 
     @Builder
-    public AlsoCounter(String title, String phone, String email, String content, int importanceCount, String QRcode, boolean isSolved, LocalDateTime limitedDate) {
+    public AlsoCounter(String title, String phone, String email, String content, String QRcode, boolean isSolved, LocalDateTime limitedDate) {
         this.title = title;
         this.phone = phone;
         this.email = email;
         this.content = content;
-        this.importanceCount = importanceCount;
         this.QRcode = QRcode;
         this.isSolved = isSolved;
         this.limitedDate = limitedDate;
@@ -65,7 +60,6 @@ public class AlsoCounter extends BaseTimeEntity {
                 .phone(phone)
                 .email(email)
                 .content(content)
-                .importanceCount(importanceCount)
                 .QRcode(QRcode)
                 .isSolved(isSolved)
                 .limitedDate(limitedDate).build();

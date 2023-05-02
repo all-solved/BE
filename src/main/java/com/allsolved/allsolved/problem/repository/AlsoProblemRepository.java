@@ -1,4 +1,8 @@
 package com.allsolved.allsolved.problem.repository;
 
-public interface AlsoProblemRepository {
+import com.allsolved.allsolved.problem.entity.AlsoProblem;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface AlsoProblemRepository extends JpaRepository<AlsoProblem, Long> {
+
 }

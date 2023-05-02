@@ -6,7 +6,6 @@ import com.allsolved.allsolved.counter.repository.AlsoCounterRepository;
 import com.allsolved.allsolved.errorhandler.AllSolvedException;
 import com.allsolved.allsolved.errorhandler.ErrorCode;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

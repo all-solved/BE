@@ -1,6 +1,5 @@
 package com.allsolved.allsolved.counter.repository;
 
-import com.allsolved.allsolved.counter.dto.AlsoCounterDto;
 import com.allsolved.allsolved.counter.entity.AlsoCounter;
 import org.springframework.data.jpa.repository.JpaRepository;
 
