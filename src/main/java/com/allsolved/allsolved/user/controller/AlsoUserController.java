@@ -1,33 +1,29 @@
 package com.allsolved.allsolved.user.controller;
 
 import com.allsolved.allsolved.errorhandler.AllsoResponse;
-import com.allsolved.allsolved.file.FileHandler;
 import com.allsolved.allsolved.jwt.JwtTokenProvider;
 import com.allsolved.allsolved.user.dto.AlsoUserDto;
 import com.allsolved.allsolved.user.entity.AlsoUser;
 import com.allsolved.allsolved.user.service.AlsoUserService;
 import com.allsolved.allsolved.user.service.JwtService;
-import lombok.RequiredArgsConstructor;
-import org.apache.tomcat.jni.File;
+import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
-import java.util.Map;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/allso")
+@AllArgsConstructor
 @RestController
-public class AlsoUserController extends JwtController{
+public class AlsoUserController {
+    private final JwtTokenProvider jwtTokenProvider;
+    private final JwtService jwtService;
     private final PasswordEncoder passwordEncoder;
     private final AlsoUserService alsoUserService;
 
-    public AlsoUserController(JwtTokenProvider jwtTokenProvider, JwtService jwtService, PasswordEncoder passwordEncoder, AlsoUserService alsoUserService) {
-        super(jwtTokenProvider, jwtService);
-        this.passwordEncoder = passwordEncoder;
-        this.alsoUserService = alsoUserService;
-    }
 
     @PostMapping("/also")
     public AllsoResponse create(@RequestPart(value = "image", required = false) List<MultipartFile> files, @RequestPart(value = "alsoUserDto") AlsoUserDto alsoUserDto) throws Exception {
@@ -35,18 +31,10 @@ public class AlsoUserController extends JwtController{
         return new AllsoResponse.ResponseMap(200, "data", alsoUserService.create(alsoUserDto, files));
     }
 
-//    @PostMapping("/login")
-//    public AllsoResponse login(HttpServletRequest request, @RequestBody Map<String, String> user, @RequestHeader("User-Agent") String userAgent) {
-//        return getJwtService().login(request, user, userAgent);
-//    }
-
     @GetMapping("/login")
     public AllsoResponse login(HttpServletRequest request, @RequestParam("code") String code, @RequestHeader("User-Agent") String userAgent) {
-        return getJwtService().login(request, code, userAgent);
+        return jwtService.login(request, code, userAgent);
     }
-
-
-
 
     //아래는 연습
     @PutMapping("/m/update/{idx}")
@@ -60,7 +48,7 @@ public class AlsoUserController extends JwtController{
     }
 
     @GetMapping("/m")
-    public List<AlsoUserDto> searchAllDesc() {
+    public List<AlsoUser> searchAllDesc() {
         return alsoUserService.searchAllDesc();
     }
 

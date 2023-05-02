@@ -17,18 +17,16 @@ public class AlsoCounterDto {
     private String phone;
     private String email;
     private String content;
-    private int importanceCount;
     private String QRcode;
     private boolean isSolved;
     private LocalDateTime limitedDate;
 
     @Builder
-    public AlsoCounterDto(String title, String phone, String email, String content, int importanceCount, String QRcode, boolean isSolved, LocalDateTime limitedDate) {
+    public AlsoCounterDto(String title, String phone, String email, String content, String QRcode, boolean isSolved, LocalDateTime limitedDate) {
         this.title = title;
         this.phone = phone;
         this.email = email;
         this.content = content;
-        this.importanceCount = importanceCount;
         this.QRcode = QRcode;
         this.isSolved = isSolved;
         this.limitedDate = limitedDate;
@@ -40,7 +38,6 @@ public class AlsoCounterDto {
                 .phone(phone)
                 .email(email)
                 .content(content)
-                .importanceCount(importanceCount)
                 .QRcode(QRcode)
                 .isSolved(isSolved)
                 .limitedDate(limitedDate).build();

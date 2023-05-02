@@ -98,7 +98,7 @@ public class AlsoUserServiceImpl implements AlsoUserService, UserDetailsService 
 
     @Transactional
     @Override
-    public List<AlsoUserDto> searchAllDesc() {
+    public List<AlsoUser> searchAllDesc() {
         return alsoUserRepository.findAllByOrderByUserIdDesc();
     }
 

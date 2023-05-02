@@ -9,6 +9,6 @@ import java.util.Optional;
 
 
 public interface AlsoUserRepository extends JpaRepository<AlsoUser, Long> {
-    List<AlsoUserDto> findAllByOrderByUserIdDesc();
+    List<AlsoUser> findAllByOrderByUserIdDesc();
     Optional<AlsoUser> findByAlsoEmail(String alsoEmail);
 }
