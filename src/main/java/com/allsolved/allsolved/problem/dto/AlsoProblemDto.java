@@ -16,15 +16,17 @@ public class AlsoProblemDto {
     private int importanceCount;
     private String email;
     private String phone;
+    private Long counterId;
 
     @Builder
-    public AlsoProblemDto(String title, String content, String category, int importanceCount, String email, String phone) {
+    public AlsoProblemDto(String title, String content, String category, int importanceCount, String email, String phone, Long counterId) {
         this.title = title;
         this.content = content;
         this.category = category;
         this.importanceCount = importanceCount;
         this.email = email;
         this.phone = phone;
+        this.counterId = counterId;
     }
 
     public AlsoProblem toEntity() {

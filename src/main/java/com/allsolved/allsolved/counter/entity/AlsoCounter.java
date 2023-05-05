@@ -2,6 +2,8 @@ package com.allsolved.allsolved.counter.entity;
 
 import com.allsolved.allsolved.baseTime.BaseTimeEntity;
 import com.allsolved.allsolved.counter.dto.AlsoCounterDto;
+import com.allsolved.allsolved.problem.entity.AlsoProblem;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,6 +11,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -43,8 +47,16 @@ public class AlsoCounter extends BaseTimeEntity {
     @Column(name = "limited_date")
     private LocalDateTime limitedDate;
 
+    @OneToMany(
+            mappedBy = "alsoCounter",
+            cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+            orphanRemoval = true
+    )
+    @JsonManagedReference
+    private List<AlsoProblem> alsoProblems = new ArrayList<>();
+
     @Builder
-    public AlsoCounter(String title, String phone, String email, String content, String QRcode, boolean isSolved, LocalDateTime limitedDate) {
+    public AlsoCounter(String title, String phone, String email, String content, String QRcode, boolean isSolved, LocalDateTime limitedDate, List<AlsoProblem> alsoProblems) {
         this.title = title;
         this.phone = phone;
         this.email = email;
@@ -52,6 +64,7 @@ public class AlsoCounter extends BaseTimeEntity {
         this.QRcode = QRcode;
         this.isSolved = isSolved;
         this.limitedDate = limitedDate;
+        this.alsoProblems = alsoProblems;
     }
 
     public AlsoCounterDto toDto() {
@@ -62,7 +75,13 @@ public class AlsoCounter extends BaseTimeEntity {
                 .content(content)
                 .QRcode(QRcode)
                 .isSolved(isSolved)
-                .limitedDate(limitedDate).build();
+                .limitedDate(limitedDate)
+                .alsoProblems(alsoProblems).build();
+    }
+
+    public void addProblem(AlsoProblem alsoProblem) {
+        this.alsoProblems.add(alsoProblem);
+        alsoProblem.setAlsoCounter(this);
     }
 
 }

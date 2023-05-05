@@ -5,6 +5,7 @@ import com.allsolved.allsolved.counter.entity.AlsoCounter;
 import com.allsolved.allsolved.counter.repository.AlsoCounterRepository;
 import com.allsolved.allsolved.errorhandler.AllSolvedException;
 import com.allsolved.allsolved.errorhandler.ErrorCode;
+import com.allsolved.allsolved.problem.repository.AlsoProblemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,20 +16,23 @@ import javax.servlet.http.HttpServletRequest;
 @Service
 public class AlsoCounterServiceImpl implements AlsoCounterService {
     private final AlsoCounterRepository alsoCounterRepository;
+    private final AlsoProblemRepository alsoProblemRepository;
 
     @Transactional
     @Override
     public AlsoCounter create(HttpServletRequest request, AlsoCounterDto alsoCounterDto) {
         AlsoCounter alsoCounter = alsoCounterRepository.save(alsoCounterDto.toEntity());
         //Todo : DynamicUpdate로 바꾸기
-        alsoCounter.setQRcode(getQRcodeURI(request, alsoCounter.getCounterId()));
+
         return alsoCounterRepository.save(alsoCounter);
     }
 
     @Override
     public AlsoCounterDto getCounter(Long counterId) {
-        return alsoCounterRepository.findByCounterId(counterId)
-                .orElseThrow(() -> new AllSolvedException(ErrorCode.NOTFOUND)).toDto();
+        AlsoCounter alsoCounter = alsoCounterRepository.findByCounterId(counterId)
+                .orElseThrow(() -> new AllSolvedException(ErrorCode.NOTFOUND));
+        alsoCounter.setAlsoProblems(alsoProblemRepository.findByAlsoCounter_CounterIdOrderByCreatedDateDesc(counterId));
+        return alsoCounter.toDto();
     }
 
     private String getQRcodeURI(HttpServletRequest request, Long uri) {

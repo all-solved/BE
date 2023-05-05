@@ -48,7 +48,7 @@ public class SecurityConfig {
                 .antMatchers("/allso/m/**").authenticated()
                 .antMatchers("/allso/m/**").hasRole("ADMIN")
                 .antMatchers("/allso/u/**").hasRole("USER")
-                .antMatchers("/**").permitAll()
+                .antMatchers("/allso/u/**").permitAll()
                 .and()
                 .exceptionHandling()
                 .authenticationEntryPoint(autheniticationEntryPointHandler)

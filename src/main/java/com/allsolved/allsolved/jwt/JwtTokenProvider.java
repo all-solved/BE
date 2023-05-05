@@ -1,5 +1,6 @@
 package com.allsolved.allsolved.jwt;
 
+import com.allsolved.allsolved.errorhandler.AllSolvedException;
 import com.allsolved.allsolved.errorhandler.AuthenticationCustomException;
 import com.allsolved.allsolved.errorhandler.ErrorCode;
 import com.allsolved.allsolved.user.entity.RefreshToken;
@@ -103,9 +104,10 @@ public class JwtTokenProvider {
         try {
             validationAuthorizationHeader(jwtToken);
             String token = extractToken(jwtToken);
+            userDetailsService.loadUserByUsername(this.getUserPk(token));
             Jws<Claims> claims = Jwts.parser().setSigningKey(accessSecretKey).parseClaimsJws(token);
             return !claims.getBody().getExpiration().before(new Date());
-        } catch (SignatureException e) {
+        } catch (SignatureException | AllSolvedException e) {
             e.printStackTrace();
             request.setAttribute("exception", "ForbiddenException");
         } catch (MalformedJwtException e) {

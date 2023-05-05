@@ -104,6 +104,5 @@ public class AlsoUser extends BaseTimeEntity implements UserDetails {
     public void addPhoto(Photo photo) {
         this.photos.add(photo);
         photo.setAlsoUser(this);
-        System.out.println("Photo set complete");
     }
 }
