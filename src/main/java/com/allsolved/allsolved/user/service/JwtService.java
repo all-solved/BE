@@ -33,12 +33,12 @@ public class JwtService {
     private final AlsoUserRepository alsoUserRepository;
 
     @Transactional
-    public AllsoResponse login(HttpServletRequest request, String code, String userAgent) {
+    public AllsoResponse login(HttpServletRequest request, String access_Token, String userAgent) {
 
         AllsoResponse.ResponseMap result = null;
         try {
 
-            Map<String, Object> user = kakaoComponent.getUserInfo(kakaoComponent.getAccessTocken(code));
+            Map<String, Object> user = kakaoComponent.getUserInfo(access_Token);
 
 
             Optional<AlsoUser> alsoUser = alsoUserRepository.findByAlsoEmail(user.get("alsoEmail").toString());

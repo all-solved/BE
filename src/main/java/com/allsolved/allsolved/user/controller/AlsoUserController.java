@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Map;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/allso")
@@ -31,9 +32,9 @@ public class AlsoUserController {
         return new AllsoResponse.ResponseMap(200, "data", alsoUserService.create(alsoUserDto, files));
     }
 
-    @GetMapping("/login")
-    public AllsoResponse login(HttpServletRequest request, @RequestParam("code") String code, @RequestHeader("User-Agent") String userAgent) {
-        return jwtService.login(request, code, userAgent);
+    @PostMapping("/login")
+    public AllsoResponse login(HttpServletRequest request, @RequestParam Map<String, String> token, @RequestHeader("User-Agent") String userAgent) {
+        return jwtService.login(request, token.get("access_token"), userAgent);
     }
 
     //아래는 연습
