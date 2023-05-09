@@ -1,8 +1,8 @@
-package com.allsolved.allsolved.security;
+package com.allsolved.allsolved.common.security;
 
-import com.allsolved.allsolved.errorhandler.AutheniticationEntryPointHandler;
-import com.allsolved.allsolved.errorhandler.WebAccessDeniedHandler;
-import com.allsolved.allsolved.jwt.JwtTokenProvider;
+import com.allsolved.allsolved.common.errorhandler.AutheniticationEntryPointHandler;
+import com.allsolved.allsolved.common.errorhandler.WebAccessDeniedHandler;
+import com.allsolved.allsolved.common.jwt.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;

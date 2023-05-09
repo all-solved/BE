@@ -1,6 +1,6 @@
 package com.allsolved.allsolved.problem.controller;
 
-import com.allsolved.allsolved.errorhandler.AllsoResponse;
+import com.allsolved.allsolved.common.errorhandler.AllsoResponse;
 import com.allsolved.allsolved.problem.dto.AlsoProblemDto;
 import com.allsolved.allsolved.problem.service.AlsoProblemService;
 import lombok.RequiredArgsConstructor;

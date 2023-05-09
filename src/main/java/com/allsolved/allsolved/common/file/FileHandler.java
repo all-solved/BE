@@ -1,7 +1,6 @@
-package com.allsolved.allsolved.file;
+package com.allsolved.allsolved.common.file;
 
 import com.allsolved.allsolved.user.dto.PhotoDto;
-import com.allsolved.allsolved.user.entity.AlsoUser;
 import org.apache.tomcat.util.http.fileupload.FileUploadException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

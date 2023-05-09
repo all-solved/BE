@@ -1,4 +1,4 @@
-package com.allsolved.allsolved.file;
+package com.allsolved.allsolved.common.file;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;

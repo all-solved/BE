@@ -1,10 +1,13 @@
 package com.allsolved.allsolved.counter.controller;
 
+import com.allsolved.allsolved.common.security.AuthController;
 import com.allsolved.allsolved.counter.dto.AlsoCounterDto;
 import com.allsolved.allsolved.counter.service.AlsoCounterService;
-import com.allsolved.allsolved.errorhandler.AllsoResponse;
-import com.allsolved.allsolved.jwt.JwtTokenProvider;
+import com.allsolved.allsolved.common.errorhandler.AllsoResponse;
+import com.allsolved.allsolved.common.jwt.JwtTokenProvider;
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,14 +16,14 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/allso/m/counter")
 @AllArgsConstructor
 @RestController
-public class AlsoCounterController {
+public class AlsoCounterController extends AuthController {
     private final JwtTokenProvider jwtTokenProvider;
     private final AlsoCounterService alsoCounterService;
 
     //소통창구 작성
     @PostMapping("/write")
-    public AllsoResponse write(HttpServletRequest request, @RequestBody AlsoCounterDto alsoCounterDto) throws Exception {
-        return new AllsoResponse.ResponseMap(200, "data", alsoCounterService.create(request, alsoCounterDto));
+    public AllsoResponse write(@RequestBody AlsoCounterDto alsoCounterDto) throws Exception {
+        return new AllsoResponse.ResponseMap(200, "data", alsoCounterService.create(getCurrentUserId(), alsoCounterDto));
     }
 
     //소통창구 상세조회
@@ -32,8 +35,7 @@ public class AlsoCounterController {
     //소통창구 목록조회
     @GetMapping("/list")
     public AllsoResponse getCounterList() {
-        
-        return null;
+        return new AllsoResponse.ResponseMap(200, "data", alsoCounterService.getCounterList(getCurrentUserId()));
     }
 
     //소통창구 변경
@@ -49,6 +51,7 @@ public class AlsoCounterController {
 
         return null;
     }
+
 
 
 }

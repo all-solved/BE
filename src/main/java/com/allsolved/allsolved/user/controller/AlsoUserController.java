@@ -1,7 +1,7 @@
 package com.allsolved.allsolved.user.controller;
 
-import com.allsolved.allsolved.errorhandler.AllsoResponse;
-import com.allsolved.allsolved.jwt.JwtTokenProvider;
+import com.allsolved.allsolved.common.errorhandler.AllsoResponse;
+import com.allsolved.allsolved.common.jwt.JwtTokenProvider;
 import com.allsolved.allsolved.user.dto.AlsoUserDto;
 import com.allsolved.allsolved.user.entity.AlsoUser;
 import com.allsolved.allsolved.user.service.AlsoUserService;

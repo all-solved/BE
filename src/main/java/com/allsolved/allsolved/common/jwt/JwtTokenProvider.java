@@ -1,8 +1,8 @@
-package com.allsolved.allsolved.jwt;
+package com.allsolved.allsolved.common.jwt;
 
-import com.allsolved.allsolved.errorhandler.AllSolvedException;
-import com.allsolved.allsolved.errorhandler.AuthenticationCustomException;
-import com.allsolved.allsolved.errorhandler.ErrorCode;
+import com.allsolved.allsolved.common.errorhandler.AllSolvedException;
+import com.allsolved.allsolved.common.errorhandler.AuthenticationCustomException;
+import com.allsolved.allsolved.common.errorhandler.ErrorCode;
 import com.allsolved.allsolved.user.entity.RefreshToken;
 import com.allsolved.allsolved.user.entity.Token;
 import io.jsonwebtoken.*;
@@ -71,7 +71,6 @@ public class JwtTokenProvider {
     public Authentication getAuthentication(String token) {
         validationAuthorizationHeader(token);
         String available_token = extractToken(token);
-        System.out.println("av token = " + available_token);
         UserDetails userDetails = userDetailsService.loadUserByUsername(this.getUserPk(available_token));
         if(userDetails == null)
             return null;

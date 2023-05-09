@@ -1,4 +1,4 @@
-package com.allsolved.allsolved.errorhandler;
+package com.allsolved.allsolved.common.errorhandler;
 
 import lombok.Builder;
 import lombok.Data;
