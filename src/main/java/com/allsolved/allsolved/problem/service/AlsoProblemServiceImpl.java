@@ -2,8 +2,8 @@ package com.allsolved.allsolved.problem.service;
 
 import com.allsolved.allsolved.counter.entity.AlsoCounter;
 import com.allsolved.allsolved.counter.repository.AlsoCounterRepository;
-import com.allsolved.allsolved.errorhandler.AllSolvedException;
-import com.allsolved.allsolved.errorhandler.ErrorCode;
+import com.allsolved.allsolved.common.errorhandler.AllSolvedException;
+import com.allsolved.allsolved.common.errorhandler.ErrorCode;
 import com.allsolved.allsolved.problem.dto.AlsoProblemDto;
 import com.allsolved.allsolved.problem.entity.AlsoProblem;
 import com.allsolved.allsolved.problem.repository.AlsoProblemRepository;

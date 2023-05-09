@@ -1,19 +1,17 @@
 package com.allsolved.allsolved.counter.dto;
 
 import com.allsolved.allsolved.counter.entity.AlsoCounter;
-import com.allsolved.allsolved.problem.entity.AlsoProblem;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Setter
 @Getter
 @NoArgsConstructor
-public class AlsoCounterDto {
+public class AlsoCounterListDto {
     private Long counterId;
     private String title;
     private String phone;
@@ -22,10 +20,10 @@ public class AlsoCounterDto {
     private String QRcode;
     private boolean isSolved;
     private LocalDateTime limitedDate;
-    private List<AlsoProblem> alsoProblems;
+    private Long alsoProblemCount;
 
     @Builder
-    public AlsoCounterDto(Long counterId, String title, String phone, String email, String content, String QRcode, boolean isSolved, LocalDateTime limitedDate, List<AlsoProblem> alsoProblems) {
+    public AlsoCounterListDto(Long counterId, String title, String phone, String email, String content, String QRcode, boolean isSolved, LocalDateTime limitedDate, Long alsoProblemCount) {
         this.counterId = counterId;
         this.title = title;
         this.phone = phone;
@@ -34,7 +32,7 @@ public class AlsoCounterDto {
         this.QRcode = QRcode;
         this.isSolved = isSolved;
         this.limitedDate = limitedDate;
-        this.alsoProblems = alsoProblems;
+        this.alsoProblemCount = alsoProblemCount;
     }
 
     public AlsoCounter toEntity() {
@@ -46,7 +44,6 @@ public class AlsoCounterDto {
                 .content(content)
                 .QRcode(QRcode)
                 .isSolved(isSolved)
-                .limitedDate(limitedDate)
-                .alsoProblems(alsoProblems).build();
+                .limitedDate(limitedDate).build();
     }
 }

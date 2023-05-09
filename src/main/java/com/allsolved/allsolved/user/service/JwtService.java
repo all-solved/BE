@@ -1,10 +1,10 @@
 package com.allsolved.allsolved.user.service;
 
-import com.allsolved.allsolved.errorhandler.AllSolvedException;
-import com.allsolved.allsolved.errorhandler.AllsoResponse;
-import com.allsolved.allsolved.errorhandler.AuthenticationCustomException;
-import com.allsolved.allsolved.errorhandler.ErrorCode;
-import com.allsolved.allsolved.jwt.JwtTokenProvider;
+import com.allsolved.allsolved.common.errorhandler.AllSolvedException;
+import com.allsolved.allsolved.common.errorhandler.AllsoResponse;
+import com.allsolved.allsolved.common.errorhandler.AuthenticationCustomException;
+import com.allsolved.allsolved.common.errorhandler.ErrorCode;
+import com.allsolved.allsolved.common.jwt.JwtTokenProvider;
 import com.allsolved.allsolved.user.entity.AlsoUser;
 import com.allsolved.allsolved.user.entity.RefreshToken;
 import com.allsolved.allsolved.user.entity.Token;

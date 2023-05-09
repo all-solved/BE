@@ -1,8 +1,8 @@
 package com.allsolved.allsolved.user.service;
 
-import com.allsolved.allsolved.errorhandler.AllSolvedException;
-import com.allsolved.allsolved.errorhandler.ErrorCode;
-import com.allsolved.allsolved.file.FileHandler;
+import com.allsolved.allsolved.common.errorhandler.AllSolvedException;
+import com.allsolved.allsolved.common.errorhandler.ErrorCode;
+import com.allsolved.allsolved.common.file.FileHandler;
 import com.allsolved.allsolved.user.dto.AlsoUserDto;
 import com.allsolved.allsolved.user.dto.Role;
 import com.allsolved.allsolved.user.entity.AlsoUser;
@@ -13,14 +13,12 @@ import com.allsolved.allsolved.user.repository.PhotoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 
 @RequiredArgsConstructor
 @Service

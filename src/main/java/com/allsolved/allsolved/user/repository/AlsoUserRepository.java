@@ -1,6 +1,5 @@
 package com.allsolved.allsolved.user.repository;
 
-import com.allsolved.allsolved.user.dto.AlsoUserDto;
 import com.allsolved.allsolved.user.entity.AlsoUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 

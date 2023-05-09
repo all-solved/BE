@@ -1,7 +1,7 @@
-package com.allsolved.allsolved.security;
+package com.allsolved.allsolved.common.security;
 
 
-import com.allsolved.allsolved.jwt.JwtTokenProvider;
+import com.allsolved.allsolved.common.jwt.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;

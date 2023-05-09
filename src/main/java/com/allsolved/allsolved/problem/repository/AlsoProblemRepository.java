@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface AlsoProblemRepository extends JpaRepository<AlsoProblem, Long> {
     List<AlsoProblem> findByAlsoCounter_CounterIdOrderByCreatedDateDesc(Long counterId);
+    Long countByAlsoCounter_CounterId(Long counterId);
 }
