@@ -53,7 +53,7 @@ public class SecurityConfig {
                 .antMatchers("/allso/m/**").authenticated()
                 .antMatchers("/allso/m/**").hasRole("ADMIN")
                 .antMatchers("/allso/u/**").hasRole("USER")
-                .antMatchers("/allso/u/**").permitAll()
+                .antMatchers("/allso/u/**", "/allso/login/**").permitAll()
                 .and()
                 .cors()
                 .and()

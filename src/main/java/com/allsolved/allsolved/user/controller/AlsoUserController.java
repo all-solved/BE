@@ -33,7 +33,7 @@ public class AlsoUserController {
     }
 
     @PostMapping("/login")
-    public AllsoResponse login(HttpServletRequest request, @RequestParam Map<String, String> token, @RequestHeader("User-Agent") String userAgent) {
+    public AllsoResponse login(HttpServletRequest request, @RequestBody Map<String, String> token, @RequestHeader("User-Agent") String userAgent) {
         return jwtService.login(request, token.get("access_token"), userAgent);
     }
 
