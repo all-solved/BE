@@ -8,6 +8,7 @@ import com.allsolved.allsolved.common.errorhandler.AllSolvedException;
 import com.allsolved.allsolved.common.errorhandler.ErrorCode;
 import com.allsolved.allsolved.problem.repository.AlsoProblemRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,16 +33,16 @@ public class AlsoCounterServiceImpl implements AlsoCounterService {
     }
 
     @Override
-    public AlsoCounterDto getCounter(Long counterId) {
+    public AlsoCounterDto getCounter(Pageable pageable, Long counterId) {
         AlsoCounter alsoCounter = alsoCounterRepository.findByCounterId(counterId)
                 .orElseThrow(() -> new AllSolvedException(ErrorCode.NOTFOUND));
-        alsoCounter.setAlsoProblems(alsoProblemRepository.findByAlsoCounter_CounterIdOrderByCreatedDateDesc(counterId));
+        alsoCounter.setAlsoProblems(alsoProblemRepository.findByAlsoCounter_CounterIdOrderByCreatedDateDesc(pageable, counterId).getContent());
         return alsoCounter.toDto();
     }
 
     @Override
-    public List<AlsoCounterListDto> getCounterList(String currentUserId) {
-        List<AlsoCounter> alsoCounterList = alsoCounterRepository.findByAlsoEmailOrderByCreatedDateAsc(currentUserId);
+    public List<AlsoCounterListDto> getCounterList(Pageable pageable, String currentUserId) {
+        List<AlsoCounter> alsoCounterList = alsoCounterRepository.findByAlsoEmailOrderByCreatedDateAsc(pageable, currentUserId).getContent();
         //아래 코드가 Entity 타입을 Dto 타입으로 바꿔주는 함수식
         return alsoCounterList.stream()
                 .map(m -> m.toListDto(alsoProblemRepository.countByAlsoCounter_CounterId(m.getCounterId())))

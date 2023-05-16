@@ -6,6 +6,7 @@ import com.allsolved.allsolved.counter.service.AlsoCounterService;
 import com.allsolved.allsolved.common.errorhandler.AllsoResponse;
 import com.allsolved.allsolved.common.jwt.JwtTokenProvider;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
@@ -28,14 +29,14 @@ public class AlsoCounterController extends AuthController {
 
     //소통창구 상세조회
     @GetMapping("/{counterId}")
-    public AllsoResponse getCounter(@PathVariable Long counterId) {
-        return new AllsoResponse.ResponseMap(200, "data", alsoCounterService.getCounter(counterId));
+    public AllsoResponse getCounter(@PathVariable Long counterId, Pageable pageable) {
+        return new AllsoResponse.ResponseMap(200, "data", alsoCounterService.getCounter(pageable, counterId));
     }
 
     //소통창구 목록조회
     @GetMapping("/list")
-    public AllsoResponse getCounterList() {
-        return new AllsoResponse.ResponseMap(200, "data", alsoCounterService.getCounterList(getCurrentUserId()));
+    public AllsoResponse getCounterList(Pageable pageable) {
+        return new AllsoResponse.ResponseMap(200, "data", alsoCounterService.getCounterList(pageable, getCurrentUserId()));
     }
 
     //소통창구 변경
