@@ -26,7 +26,7 @@ public class AutheniticationEntryPointHandler implements AuthenticationEntryPoin
 
     private final Slack slackClient = Slack.getInstance();
 
-    @Value("${slack.webhook.url")
+    @Value("${slack.webhook.url}")
     private String webhookUrl;
 
     @Override
