@@ -59,7 +59,6 @@ public class JwtService {
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("exception", "UsernameOrPasswordNotFoundException");
-            request.setAttribute("e", e);
             throw new AuthenticationCustomException(ErrorCode.UsernameOrPasswordNotFoundException);
         }
 
